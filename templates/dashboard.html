@@ -1,0 +1,63 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="col-md-3 p-2 profile-container">
+  <img
+    src="https://cdn-icons-png.flaticon.com/128/5633/5633108.png"
+    class="w-50"
+  />
+  <h2>In Ho Chi Minh City</h2>
+  <div class="indicator-container">
+    <div>
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
+        width="50px"
+      />
+      Total stores
+    </div>
+    <p>{{total_stores}}</p>
+  </div>
+  <div class="indicator-container">
+    <div>
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
+        width="50px"
+      />
+      Total food categories
+    </div>
+    <p>{{total_categories}}</p>
+  </div>
+  <div class="indicator-container">
+    <div>
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
+        width="50px"
+      />
+      Total food cuisine
+    </div>
+    <p>{{total_cuisine}}</p>
+  </div>
+</div>
+<div class="col-md-9">
+  <h2>{{today}}</h2>
+  <div class="row container-fluid p-0 m-0">
+    <!-- <div class="col-md-6"> -->
+    <div class="monitor-container">
+      <img src="../static/charts/distribution_district.png" class="w-100" />
+      <h3>Distribution of food stores in each district</h3>
+    </div>
+    <!-- </div> -->
+    <!-- <div class="col-md-6"> -->
+    <div class="monitor-container">
+      <img src="../static/charts/most_common_food_plot.png" class="w-100" />
+      <h3>Most common types of food</h3>
+    </div>
+    <!-- </div> -->
+    <div class="monitor-container">
+      <img
+        src="../static/charts/most_common_food_wordcloud.png"
+        class="w-100"
+      />
+      <h3>Word cloud</h3>
+    </div>
+  </div>
+</div>
+{% endblock %}
