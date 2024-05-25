@@ -1,56 +1,182 @@
 {% extends 'layout.html' %} {% block content %}
-<div class="col-md-3 p-2 profile-container">
+<div class="col-md-4 p-2 profile-container">
   <img
     src="https://cdn-icons-png.flaticon.com/128/5633/5633108.png"
-    class="w-50"
+    class="w-25"
   />
   <h2>In Ho Chi Minh City</h2>
-  <div class="indicator-container">
-    <div>
+
+  <!-- TOTAL REVIEWS -->
+  <div class="indicator-container row align-items-center">
+    <div class="col-md-2 p-0">
       <img
-        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
-        width="50px"
+        src="https://cdn-icons-png.flaticon.com/128/11472/11472484.png"
+        class="w-100"
       />
-      Total stores
     </div>
-    <p>{{total_stores}}</p>
+    <div class="col-md-10 text-center">
+      <h3>Total reviews</h3>
+      <p>{{total_reviews}}</p>
+    </div>
   </div>
-  <div class="indicator-container">
-    <div>
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
-        width="50px"
-      />
-      Total food categories
+
+  <!-- COLLAPSE -->
+  <div id="accordion">
+    <!-- TOTAL STORES -->
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <div class="indicator-container row align-items-center m-0">
+          <div class="col-md-2 p-0">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2533/2533563.png"
+              class="w-100"
+            />
+          </div>
+          <div class="col-md-9 text-center">
+            <h3>Total stores</h3>
+            <p>{{total_stores}}</p>
+          </div>
+          <div class="col-md-1 p-0 text-center">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+              disabled
+            >
+              <!-- <img
+                src="https://cdn-icons-png.flaticon.com/128/3298/3298615.png"
+                alt="show more"
+              /> -->
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="collapseOne"
+        class="collapse show"
+        aria-labelledby="headingOne"
+        data-parent="#accordion"
+      >
+        <!-- <div class="card-body">Content #1</div> -->
+      </div>
     </div>
-    <p>{{total_categories}}</p>
-  </div>
-  <div class="indicator-container">
-    <div>
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/5479/5479005.png"
-        width="50px"
-      />
-      Total food cuisine
+
+    <!-- TOTAL FOOD CATEGORIES -->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <div class="indicator-container row align-items-center m-0">
+          <div class="col-md-2 p-0">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1037/1037855.png"
+              class="w-100"
+            />
+          </div>
+          <div class="col-md-9 text-center">
+            <h3>Total food categories</h3>
+            <p>{{total_categories}}</p>
+          </div>
+          <div class="col-md-1 p-0 text-center">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/3298/3298615.png"
+                alt="show more"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="collapseTwo"
+        class="collapse"
+        aria-labelledby="headingTwo"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          {% for i in n_category_charts %}
+          <img
+            src="../static/charts/food_category_sentiments_{{i}}.png"
+            class="w-100"
+          />
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    <p>{{total_cuisine}}</p>
+
+    <!-- TOTAL CUISINE -->
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <div class="indicator-container row align-items-center m-0">
+          <div class="col-md-2 p-0">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2907/2907191.png"
+              class="w-100"
+            />
+          </div>
+          <div class="col-md-9 text-center">
+            <h3>Total cuisine</h3>
+            <p>{{total_cuisine}}</p>
+          </div>
+          <div class="col-md-1 p-0 text-center">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/3298/3298615.png"
+                alt="show more"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="collapseThree"
+        class="collapse"
+        aria-labelledby="headingThree"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          {% for i in n_cuisine_charts %}
+          <img
+            src="../static/charts/cuisine_sentiments_{{i}}.png"
+            class="w-100"
+          />
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="col-md-9">
-  <h2>{{today}}</h2>
+
+<div class="col-md-8">
   <div class="row container-fluid p-0 m-0">
-    <!-- <div class="col-md-6"> -->
+    <form
+      action="/fetch-data"
+      method="post"
+      class="form-fetch text-center mt-3"
+    >
+      <button type="submit">Fetch data</button>
+    </form>
     <div class="monitor-container">
       <img src="../static/charts/distribution_district.png" class="w-100" />
       <h3>Distribution of food stores in each district</h3>
     </div>
-    <!-- </div> -->
-    <!-- <div class="col-md-6"> -->
     <div class="monitor-container">
       <img src="../static/charts/most_common_food_plot.png" class="w-100" />
       <h3>Most common types of food</h3>
     </div>
-    <!-- </div> -->
     <div class="monitor-container">
       <img
         src="../static/charts/most_common_food_wordcloud.png"

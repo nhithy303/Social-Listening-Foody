@@ -91,3 +91,29 @@ html * {
   font-weight: bold;
   font-size: 60px;
 }
+
+.card,
+.card-header {
+  background-color: transparent;
+  border: none;
+}
+
+button img:hover {
+  filter: brightness(120%);
+}
+
+button img {
+  width: 50px;
+}
+
+.form-fetch button {
+  background-color: var(--color-3);
+  border: 2px solid var(--color-2);
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.form-fetch button:hover {
+  filter: brightness(110%);
+  box-shadow: 0 0 3px 1px grey;
+}
